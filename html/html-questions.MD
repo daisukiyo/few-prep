@@ -14,10 +14,10 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
   - [What are data-attributes good for?](#what-are-data-attributes-good-for)
   - [Consider HTML5 as an open web platform. What are the building blocks of HTML5?](#consider-html5-as-an-open-web-platform-what-are-the-building-blocks-of-html5)
   - [Describe the differences between a cookie, sessionStorage, and localStorage](#describe-the-differences-between-a-cookie-sessionstorage-and-localstorage)
-  - [Describe the difference between `<script>`, `<script async>`, and `<script defer>`](#describe-the-difference-between-script-script-async-and-script-defer)
-  - [Why is it generally a good idea to position CSS `link`s between `<head></head>` and JS `<script>`s just before `</body>`? Do you know any exceptions?](#why-is-it-generally-a-good-idea-to-position-css-links-between-headhead-and-js-scripts-just-before-body-do-you-know-any-exceptions)
+  - [Describe the difference between script, script async , and script defer](#describe-the-difference-between-script-script-async--and-script-defer)
+  - [Why is it generally a good idea to position CSS links between head tags and JS scripts just before closing body tag. Do you know any exceptions?](#why-is-it-generally-a-good-idea-to-position-css-links-between-head-tags-and-js-scripts-just-before-closing-body-tag-do-you-know-any-exceptions)
   - [What is progressive rendering?](#what-is-progressive-rendering)
-  - [Why you would use `srcset` attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.](#why-you-would-use-srcset-attribute-in-an-image-tag-explain-the-process-the-browser-uses-when-evaluating-the-content-of-this-attribute)
+  - [Why you would use srcset attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.](#why-you-would-use-srcset-attribute-in-an-image-tag-explain-the-process-the-browser-uses-when-evaluating-the-content-of-this-attribute)
   - [Have you ever used different HTMl templating languages before?](#have-you-ever-used-different-html-templating-languages-before)
 
 ---
@@ -126,7 +126,7 @@ Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
 
 ---
 
-## Describe the difference between `<script>`, `<script async>`, and `<script defer>`
+## Describe the difference between script, script async , and script defer
 
 - **Script**: an element used to embed or reference executable code; typically for JS
 - **Script Async**: A script attribute -- if present, then the classic script will be fetched in parallel to parsing and evaluated as soon as it is available.
@@ -136,7 +136,7 @@ Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
 
 ---
 
-## Why is it generally a good idea to position CSS `link`s between `<head></head>` and JS `<script>`s just before `</body>`? Do you know any exceptions?
+## Why is it generally a good idea to position CSS links between head tags and JS scripts just before closing body tag. Do you know any exceptions?
 
 - CSS goes between head because it is declared before the body. This means that your styles are loaded in before the body.
   - If styles are found in the body, the browser will re-render the page when the styles declared have been parsed. (avoid reflows/repaints + poor separation of concerns)
@@ -155,7 +155,7 @@ Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
 
 ---
 
-## Why you would use `srcset` attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.
+## Why you would use srcset attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.
 
 - `srcset` defines the set of images we will allow the browser to choose between, and what size each image is. Each set of image information is separated from the previous one by a comma. For each one, we write:
   - n image filename (elva-fairy-480w.jpg)
