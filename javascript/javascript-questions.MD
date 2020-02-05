@@ -26,7 +26,7 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
   - [Describe event capturing](#describe-event-capturing)
   - [What's the difference between an "attribute" and a "property"](#whats-the-difference-between-an-%22attribute%22-and-a-%22property%22)
   - [What are the pros and cons of extending built-in JavaScript objects?](#what-are-the-pros-and-cons-of-extending-built-in-javascript-objects)
-  - [What is the difference between == and ===?](#what-is-the-difference-between--and)
+  - [What is the difference between == and === ?](#what-is-the-difference-between--and)
   - [Explain the same-origin policy with regards to JavaScript](#explain-the-same-origin-policy-with-regards-to-javascript)
   - [Why is it called a Ternary operator, what does the word "Ternary" indicate?](#why-is-it-called-a-ternary-operator-what-does-the-word-%22ternary%22-indicate)
   - [What is strict mode? What are some of the advantages/disadvantages of using it?](#what-is-strict-mode-what-are-some-of-the-advantagesdisadvantages-of-using-it)
@@ -154,7 +154,22 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
 
 ---
 
-## What is the difference between == and ===?
+## What is the difference between == and === ?
+- `==`: abstract equality comparison
+  - converts to the same type before comparison (type coercion)
+  - loose equality, double equals
+  - inequality: `!=`
+- `===`: strict equality comparison
+  - used by indexOf, lastIndexOf, and case-matching
+  - strict equality, identity, triple equls
+  - inequality: `!==`
+- ECMA Script 6:
+  - `Object.is()` makes up for `===`'s imperfect behavior
+  - ```JavaScript
+    console.log(+0 === -0)    // true
+    console.log(NaN === NaN)  // false
+    ```
+
 
 ---
 
@@ -208,6 +223,10 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
 
 ## What are the difference between variables created using let, var or const?
 
+- let: declares a block scope local variable, optionally initializing it to a value.
+- var: declares a variable -- processed before any code is executed
+- const: are block-scoped, much like variables defined using the let statement. The value of a constant can't be changed through reassignment, and it can't be redeclared.
+
 ---
 
 ## What are the differences between ES6 class and ES5 function constructors?
@@ -240,10 +259,94 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
 
 ## What are the benefits of using spread syntax and how is it different from rest syntax?
 
+- Allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+- This is important for react due to immutability. Don't want a data structure to update/remove/shift to the original, but to a copy (Think State -- we make the changes, then tell react the new thing we want in the state -- object id/references).
+- TLDR: You can use spread in three places:
+
+  1. Function Calls (executing functions)
+
+        ```JavaScript
+        const temps = [10, 20, 30, 25, 25, 10]
+        Math.min(temps);      // returns NaN
+        Math.min(...temps)    // returns 10
+
+        // before spread
+        Math.min.apply(null, temperatures);
+
+        console.log("hello", "friend", "bye" )
+        const names = ["Bart Simpson", "Spongebob Squarepants", "Ash Ketchum"]
+        console.log(names)        // returns array
+        console.log(...names)     // returns each name separated by spaces
+
+        console.log(..."potato")  // returns p o t a t o (spreads string)
+        ```
+
+  2. Array Literals (making an array) -- common use case
+
+        ```JavaScript
+        const gen1 = ["Charmander", "Squirtle", "Bulbasaur"]
+        const gen2 = ["Cyndaquil", "Totodile", "Chikorita"]
+
+        const pokemon = [gen1, gen2]            // returns nested array
+        const pokemonFix = [...gen1, ...gen2]   // returns combined array
+
+        // ORDER DOES MATTER
+        // Spread only goes ONE LEVEL deep when copying an array -- does not perform a deep copy of nested arrays!
+        ```
+
+  3. Object Literals (making an object)
+
+      ```JavaScript
+      const lion = {hasTail: true, legs: 4};
+      const eagle = {canFly: true };
+      const hybrid = {name: "Gryphon", ...lion, ...eagle}
+      ```
+  
 ---
 
-## How can you share code between files? 
+## How can you share code between files?
+
+- Formerly: Asynchronous Module Definition(AMD) via RequireJS or CommonJS (Node.js)
+- Modern: ES2015 defines a **module** syntax to be supported both browser and node and replace AMD and CommonJS.
+
+  - ```JavaScript
+    // export
+    export { name, draw, reportArea, reportPerimeter };
+
+    export function double (n) {
+      return n * 2;
+    }
+
+    // export default (only 1 per module)
+    export default function sayName() {
+      console.log('Name!');
+    }
+
+    // import
+    import { name, draw, reportArea, reportPerimeter } from './modules/square.js';
+
+    import { double } from './utils.js'; // import from utils.js
+
+    import { double as utilsDouble } from './utils.js'; // rename
+
+    // this is probably the most semantic
+    import * as Utils from './utils.js' // all from utils import -- Utils.double
+
+    // import default
+    import bottle from './utils.js' // no bracket means it imports the default
+
+    ```
+
+- Applying the module to your HTML:
+  
+  - ```HTML
+    <script type="module" src="main.js"></script>
+    ```
 
 ---
 
 ## Why you might want to create static class members?
+
+- Static methods aren't called on instances, but rather they're called on the class itself.
+  - Often for utility functions such as create/clone objects.
+- Static methods are called **without instantiating** their class and **cannot** be called through a class instance.
