@@ -54,19 +54,48 @@ Solutions to the questions found [here](https://h5bp.org/Front-end-Developer-Int
 ---
 
 ## Explain Event Delegation
+- A powerful event handling pattern
+  - When dealing with a lot of similar elements -- instead of assigning a handler to each of them, put a **single** handler on their common ancestor
+  - makes use of two often overlooked features of JavaScript events: **event bubbling** and the **target element**.
 
 ---
 
 ## Explain how `this` works in Javascript
+- A property of an execution context (global, function or eval) that, in non–strict mode, is always a reference to an object and in strict mode can be any value.
+- In the global execution context (outside of any function), this refers to the global object whether in strict mode or not.
+- Inside a function, the value of this depends on how the function is called.
+  - Simple Call
+  - The Bind Method
+  - Arrow Functions
+  - As an Object Method
+  - This On the Object's Prototype Chain
+  - This with a getter or setter
+  - As a Constructor
+  - As a DOM Event Handler
+  - In an Inline Event Handler
 
 ---
 
 ## Explain how prototypal inheritance works
-
+- JavaScript is Prototype-based unline Java for example which is Class-based. (Dynamic and does not provide a `class` implementation)
+  - Although ES2015 introduced the `class` keyword -- it is only Syntactical sugar.
+- Javascript has **one** construct: objects
+  - Each object has a private property which holds a link to another object called it's **prototype**.
+  - That prototype object has a prototype of its own and so on until it hits **null**
+    - `null` is the final link of the prototype chain
 ---
 
 ## What's the difference between a variable that is: null, undefined, or undeclared?
-
+- `null`: A variable that represents the intentional absence of any object value
+  - treated as a falsy for boolean operations
+- `undefined`: a primitive value automatically assigned to variables that have been declared or to formal arguments which there are no actual arguments.
+  - A function returns undefined if a value was not returned.
+- `undeclared`: a variable that is declared without a `var` keyword.
+  - ```JavaScript
+    testVar = 'helloWorld'        // undeclared
+    var testVar = 'helloWorld'    // declared
+    ```
+    
 ---
 
 ## What is a closure, and how/why would you use one?
